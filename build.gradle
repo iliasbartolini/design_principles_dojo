@@ -1,0 +1,26 @@
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+    testCompile 'junit:junit-dep:4.11'
+    testCompile 'org.hamcrest:hamcrest-all:1.3'
+    testCompile 'org.mockito:mockito-all:1.9.5'
+}
+
+
+mainClassName = 'com.thoughtworks.game_of_life.ui.GameRunner'
+
+
+jar {
+    manifest { attributes 'Main-Class': 'com.thoughtworks.game_of_life.ui.GameRunner' }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.12'
+}
