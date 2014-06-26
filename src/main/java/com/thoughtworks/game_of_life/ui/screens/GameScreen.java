@@ -15,7 +15,7 @@ public class GameScreen implements Screen {
         this(new World());
     }
 
-    private GameScreen(World world) {
+    public GameScreen(World world) {
         this(world, new GamePresenter(world));
     }
 
@@ -25,11 +25,11 @@ public class GameScreen implements Screen {
     }
 
     public void draw(Graphics2D graphics) {
-        world.advance();
         gamePresenter.draw(graphics);
     }
 
     public Screen getNextScreen() {
+        world.advance();
         return this;
     }
 

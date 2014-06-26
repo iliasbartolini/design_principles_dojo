@@ -2,19 +2,23 @@ package com.thoughtworks.game_of_life.ui.screens;
 
 
 import com.thoughtworks.game_of_life.core.World;
+import com.thoughtworks.game_of_life.ui.GameCanvas;
+import com.thoughtworks.game_of_life.ui.GameRunner;
 import com.thoughtworks.game_of_life.ui.ImageLoader;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class IntroScreen implements Screen {
-    static final Image TITLE_SCREEN_IMAGE = ImageLoader.loadImage(Screen.class, "introScreen.png");
+    static final Image TITLE_SCREEN_IMAGE = ImageLoader.loadImage(GameCanvas.class, "introScreen.png");
 
     private final Dimension dimension;
     private boolean startGame;
+    private World world;
 
     public IntroScreen(World world) {
-        this.dimension = world.getDimension();
+        this.world = world;
+        this.dimension = new Dimension(GameRunner.TILE_SIZE * World.DEFAULT_WIDTH, GameRunner.TILE_SIZE * World.DEFAULT_HEIGHT);
         this.startGame = false;
     }
 
@@ -25,7 +29,7 @@ public class IntroScreen implements Screen {
 
     public Screen getNextScreen() throws Exception {
         if (startGame) {
-            return new GameScreen();
+            return new GameScreen(world);
         }
         return this;
     }

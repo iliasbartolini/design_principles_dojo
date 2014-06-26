@@ -1,6 +1,5 @@
 package com.thoughtworks.game_of_life.core;
 
-import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,19 +7,14 @@ import static com.thoughtworks.game_of_life.core.Location.allWorldLocations;
 
 public class World {
 
-    private static final int DEFAULT_WIDTH = 10;
-    private static final int DEFAULT_HEIGHT = 10;
+    public static final int DEFAULT_WIDTH = 10;
+    public static final int DEFAULT_HEIGHT = 10;
 
-    private static final int TILE_SIZE = 48;
 
     Map<Location, Cell> cells;
 
     public World()  {
         cells = initCells();
-    }
-
-    public Dimension getDimension() {
-        return new Dimension(TILE_SIZE * DEFAULT_WIDTH, TILE_SIZE * DEFAULT_HEIGHT);
     }
 
     public void advance() {
