@@ -45,6 +45,10 @@ public class World {
         cells[x][y] = Cell.ALIVE;
     }
 
+    public boolean isAliveAt(int x, int y) {
+        return cells[x][y].isAlive();
+    }
+
     private Cell[][] initCells(Cell[][] newCells) {
         for (int x = 0; x < DEFAULT_WIDTH; x++) {
             for (int y = 0; y < DEFAULT_HEIGHT; y++) {

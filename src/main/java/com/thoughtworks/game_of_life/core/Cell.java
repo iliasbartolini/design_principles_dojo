@@ -19,7 +19,8 @@ public class Cell {
     }
 
     public boolean willBeAlive(int numberOfAliveNeighbours) {
-        return (alive && (numberOfAliveNeighbours == 2));
+        return (alive && (numberOfAliveNeighbours == 2 || numberOfAliveNeighbours == 3))
+                || (!alive && (numberOfAliveNeighbours == 3));
     }
 
 }

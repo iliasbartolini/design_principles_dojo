@@ -46,14 +46,54 @@ public class WorldTest {
     }
 
     @Test
-    public void live_cells_with_two_or_three_live_neighbours_survives(){
+    public void live_cells_with_two_live_neighbours_survives(){
         world.setLivingAt(2,2);
         world.setLivingAt(2,3);
         world.setLivingAt(2,4);
 
         world.advance();
 
+        assertThat(world.isAliveAt(2,3), is(true));
         assertThat(world.isEmpty(), is(false));
+    }
+
+    @Test
+    public void live_cells_with_three_live_neighbours_survives(){
+        world.setLivingAt(2,3);
+
+        world.setLivingAt(2,2);
+        world.setLivingAt(2,4);
+        world.setLivingAt(3,3);
+
+        world.advance();
+
+        assertThat(world.isAliveAt(2,3), is(true));
+    }
+
+    @Test
+    public void live_cells_with_more_than_three_live_neighbours_dies(){
+        world.setLivingAt(2,3);
+
+        world.setLivingAt(2,2);
+        world.setLivingAt(2,4);
+        world.setLivingAt(3,3);
+        world.setLivingAt(1,3);
+
+        world.advance();
+
+        assertThat(world.isAliveAt(2,3), is(false));
+    }
+
+    @Test
+    public void dead_cell_with_exactly_three_live_neighbours_becomes_alive(){
+
+        world.setLivingAt(2,2);
+        world.setLivingAt(2,4);
+        world.setLivingAt(3,3);
+
+        world.advance();
+
+        assertThat(world.isAliveAt(2,3), is(true));
     }
 
 
