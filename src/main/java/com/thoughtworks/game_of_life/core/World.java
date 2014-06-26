@@ -11,6 +11,8 @@ public class World {
     private static final int DEFAULT_WIDTH = 10;
     private static final int DEFAULT_HEIGHT = 10;
 
+    private static final int TILE_SIZE = 48;
+
     Map<Location, Cell> cells;
 
     public World()  {
@@ -18,7 +20,7 @@ public class World {
     }
 
     public Dimension getDimension() {
-        return new Dimension(480, 480);
+        return new Dimension(TILE_SIZE * DEFAULT_WIDTH, TILE_SIZE * DEFAULT_HEIGHT);
     }
 
     public void advance() {
@@ -26,7 +28,7 @@ public class World {
 
         for (Location location : allWorldLocations(DEFAULT_WIDTH, DEFAULT_HEIGHT)) {
             if (cells.get(location).willBeAlive(numberOfAliveNeighbours(location))){
-                newCells.put(location, Cell.ALIVE);
+                newCells.put(location, new AliveCell());
             }
         }
         cells = newCells;
@@ -42,7 +44,7 @@ public class World {
     }
 
     public void setLiving(Location location) {
-        cells.put(location, Cell.ALIVE);
+        cells.put(location, new AliveCell());
     }
 
     public boolean isAlive(Location location) {
@@ -52,7 +54,7 @@ public class World {
     private Map<Location,Cell> initCells() {
         Map<Location, Cell> cells = new HashMap<>();
         for (Location location : allWorldLocations(DEFAULT_WIDTH, DEFAULT_HEIGHT)) {
-            cells.put(location, Cell.DEAD);
+            cells.put(location, new DeadCell());
         }
         return cells;
     }
