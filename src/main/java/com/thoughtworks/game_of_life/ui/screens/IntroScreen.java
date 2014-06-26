@@ -1,7 +1,7 @@
 package com.thoughtworks.game_of_life.ui.screens;
 
 
-import com.thoughtworks.game_of_life.core.Game;
+import com.thoughtworks.game_of_life.core.World;
 import com.thoughtworks.game_of_life.ui.ImageLoader;
 
 import java.awt.*;
@@ -13,8 +13,8 @@ public class IntroScreen implements Screen {
     private final Dimension dimension;
     private boolean startGame;
 
-    public IntroScreen(Game game) {
-        this.dimension = game.getDimension();
+    public IntroScreen(World world) {
+        this.dimension = world.getDimension();
         this.startGame = false;
     }
 

@@ -1,6 +1,6 @@
 package com.thoughtworks.game_of_life.ui;
 
-import com.thoughtworks.game_of_life.core.Game;
+import com.thoughtworks.game_of_life.core.World;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,12 +18,12 @@ public class GameRunner {
 
     private boolean open;
     private GameCanvas canvas;
-    private Game game;
+    private World world;
 
     private void initialize() throws Exception {
-        game = new Game();
-        Dimension dimension = game.getDimension();
-        canvas = new GameCanvas(dimension, game);
+        world = new World();
+        Dimension dimension = world.getDimension();
+        canvas = new GameCanvas(dimension, world);
 
         JFrame container = new JFrame("Conway's Game of Life");
 

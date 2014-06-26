@@ -1,31 +1,31 @@
 package com.thoughtworks.game_of_life.ui.screens;
 
 
-import com.thoughtworks.game_of_life.core.Game;
+import com.thoughtworks.game_of_life.core.World;
 import com.thoughtworks.game_of_life.ui.presenters.GamePresenter;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class GameScreen implements Screen {
-    private final Game game;
+    private final World world;
     private final GamePresenter gamePresenter;
 
     public GameScreen() throws Exception {
-        this(new Game());
+        this(new World());
     }
 
-    private GameScreen(Game game) {
-        this(game, new GamePresenter(game));
+    private GameScreen(World world) {
+        this(world, new GamePresenter(world));
     }
 
-    GameScreen(Game game, GamePresenter gamePresenter) {
-        this.game = game;
+    GameScreen(World world, GamePresenter gamePresenter) {
+        this.world = world;
         this.gamePresenter = gamePresenter;
     }
 
     public void draw(Graphics2D graphics) {
-        game.advance();
+        world.advance();
         gamePresenter.draw(graphics);
     }
 

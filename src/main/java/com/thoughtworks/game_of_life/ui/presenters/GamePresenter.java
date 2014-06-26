@@ -1,15 +1,15 @@
 package com.thoughtworks.game_of_life.ui.presenters;
 
-import com.thoughtworks.game_of_life.core.Game;
+import com.thoughtworks.game_of_life.core.World;
 
 import java.awt.Graphics2D;
 
 public class GamePresenter implements Presenter {
 
-    private Game game;
+    private World world;
 
-    public GamePresenter(Game game) {
-        this.game = game;
+    public GamePresenter(World world) {
+        this.world = world;
     }
 
     public void draw(Graphics2D graphics) {

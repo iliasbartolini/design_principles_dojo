@@ -1,6 +1,6 @@
 package com.thoughtworks.game_of_life.ui;
 
-import com.thoughtworks.game_of_life.core.Game;
+import com.thoughtworks.game_of_life.core.World;
 import com.thoughtworks.game_of_life.ui.screens.IntroScreen;
 import com.thoughtworks.game_of_life.ui.screens.Screen;
 
@@ -16,9 +16,9 @@ public class GameCanvas extends Canvas implements KeyListener {
     private final Dimension dimension;
     private Screen currentScreen;
 
-    public GameCanvas(Dimension dimension, Game game) {
+    public GameCanvas(Dimension dimension, World world) {
         this.dimension = dimension;
-        this.currentScreen = new IntroScreen(game);
+        this.currentScreen = new IntroScreen(world);
     }
 
     public void initialize(JPanel panel) {
