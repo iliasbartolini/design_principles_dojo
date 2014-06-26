@@ -1,7 +1,13 @@
 package com.thoughtworks.game_of_life.core;
 
+import org.hamcrest.core.IsEqual;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.EventListener;
+import java.util.List;
+import java.util.Map;
 
 import static com.thoughtworks.game_of_life.core.Location.at;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -97,5 +103,40 @@ public class WorldTest {
         assertThat(world.isAlive(at(2, 3)), is(true));
     }
 
+    class Stafava
+    {
+        public boolean Called;
+
+        public Stafava(boolean b) {
+            this.Called = b;
+        }
+    }
+
+
+    @Test
+    public void live_cell_with_more_than_fourth_live_neighbours_zombies()
+    {
+        world.setLiving(at(2, 3));
+
+        world.setLiving(at(2, 2));
+        world.setLiving(at(2, 4));
+        world.setLiving(at(3, 3));
+        world.setLiving(at(1, 3));
+
+        final Stafava executed = new Stafava(false);
+        world.onAdvance(new EvolutionListener() {
+            @Override
+            public void onNewZombies(List<Location> zombies) {
+                executed.Called = true;
+                assertThat(zombies, IsEqual.equalTo(Arrays.asList(Location.at(2, 3))));
+            }
+        });
+
+        world.advance();
+
+        assertThat(executed.Called, is(true));
+
+
+    }
 
 }

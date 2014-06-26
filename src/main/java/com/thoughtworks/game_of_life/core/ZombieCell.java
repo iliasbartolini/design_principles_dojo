@@ -1,20 +1,21 @@
 package com.thoughtworks.game_of_life.core;
 
-public class AliveCell implements Cell{
-
+/**
+ * Created by gpad on 26/06/14.
+ */
+public class ZombieCell implements Cell {
     @Override
     public boolean isAlive() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean willBeAlive(int numberOfAliveNeighbours) {
-        return numberOfAliveNeighbours == 2 || numberOfAliveNeighbours == 3;
+        return false;
     }
 
     @Override
     public boolean willBeZombie(int numberOfAliveNeighbours) {
-        return numberOfAliveNeighbours >= 4;
+        return true;
     }
-
 }

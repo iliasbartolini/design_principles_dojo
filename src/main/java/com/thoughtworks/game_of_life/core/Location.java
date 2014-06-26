@@ -17,7 +17,7 @@ public class Location {
     }
 
     public static List<Location> allWorldLocations(int width, int height) {
-        ArrayList<Location> locations = new ArrayList<>();
+        ArrayList<Location> locations = new ArrayList<Location>();
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 locations.add(new Location(x, y));
@@ -27,7 +27,7 @@ public class Location {
     }
 
     public List<Location> allNeighbours(int worldWidth, int worldHeight) {
-        ArrayList<Location> neighbours = new ArrayList<>();
+        ArrayList<Location> neighbours = new ArrayList<Location>();
 
         int lowerX = Math.max(0, x - 1);
         int upperX = Math.min(worldWidth - 1, x + 1);
