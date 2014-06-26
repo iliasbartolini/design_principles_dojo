@@ -1,16 +1,20 @@
 package com.thoughtworks.game_of_life.core;
 
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.thoughtworks.game_of_life.core.Location.allWorldLocations;
 
 public class World {
 
     private static final int DEFAULT_WIDTH = 10;
     private static final int DEFAULT_HEIGHT = 10;
 
-    Cell[][] cells;
+    Map<Location, Cell> cells;
 
     public World()  {
-        cells = initCells(new Cell[DEFAULT_WIDTH][DEFAULT_HEIGHT]);
+        cells = initCells();
     }
 
     public Dimension getDimension() {
@@ -18,60 +22,47 @@ public class World {
     }
 
     public void advance() {
-        Cell[][] newCells = initCells(new Cell[DEFAULT_WIDTH][DEFAULT_HEIGHT]);
+        Map<Location, Cell> newCells = initCells();
 
-        for (int x = 0; x < DEFAULT_WIDTH; x++) {
-            for (int y = 0; y < DEFAULT_HEIGHT; y++) {
-                if (cells[x][y].willBeAlive(numberOfAliveNeighbours(x, y))){
-                    newCells[x][y] = Cell.ALIVE;
-                }
+        for (Location location : allWorldLocations(DEFAULT_WIDTH, DEFAULT_HEIGHT)) {
+            if (cells.get(location).willBeAlive(numberOfAliveNeighbours(location))){
+                newCells.put(location, Cell.ALIVE);
             }
         }
         cells = newCells;
     }
 
     public boolean isEmpty() {
-        for (Cell[] row: cells) {
-            for (Cell cell: row){
-                if (cell.isAlive()){
-                    return false;
-                }
+        for (Cell cell: cells.values()) {
+            if (cell.isAlive()){
+                return false;
             }
         }
         return true;
     }
 
-    public void setLivingAt(int x, int y) {
-        cells[x][y] = Cell.ALIVE;
+    public void setLiving(Location location) {
+        cells.put(location, Cell.ALIVE);
     }
 
-    public boolean isAliveAt(int x, int y) {
-        return cells[x][y].isAlive();
+    public boolean isAlive(Location location) {
+        return cells.get(location).isAlive();
     }
 
-    private Cell[][] initCells(Cell[][] newCells) {
-        for (int x = 0; x < DEFAULT_WIDTH; x++) {
-            for (int y = 0; y < DEFAULT_HEIGHT; y++) {
-                newCells[x][y] = Cell.DEAD;
-            }
+    private Map<Location,Cell> initCells() {
+        Map<Location, Cell> cells = new HashMap<>();
+        for (Location location : allWorldLocations(DEFAULT_WIDTH, DEFAULT_HEIGHT)) {
+            cells.put(location, Cell.DEAD);
         }
-        return newCells;
+        return cells;
     }
 
-    public int numberOfAliveNeighbours(int i, int j) {
+    public int numberOfAliveNeighbours(Location l) {
         int aliveNeighbours = 0;
 
-        int lowerX = Math.max(0, i-1);
-        int upperX = Math.min(DEFAULT_WIDTH-1, i+1);
-
-        int lowerY = Math.max(0, j-1);
-        int upperY = Math.min(DEFAULT_HEIGHT-1, j+1);
-
-        for (int x = lowerX; x <= upperX; x++) {
-            for (int y = lowerY; y <= upperY; y++) {
-                if ((x != i || y != j) && cells[x][y].isAlive()){
-                    aliveNeighbours++;
-                }
+        for (Location location : l.allNeighbours(DEFAULT_WIDTH, DEFAULT_HEIGHT)){
+            if (cells.get(location).isAlive()){
+                aliveNeighbours++;
             }
         }
         return aliveNeighbours;
