@@ -10,13 +10,7 @@ public class World {
     Cell[][] cells;
 
     public World()  {
-        cells = new Cell [DEFAULT_WIDTH][DEFAULT_HEIGHT];
-
-        for (int x = 0; x < DEFAULT_WIDTH; x++) {
-            for (int y = 0; y < DEFAULT_HEIGHT; y++) {
-                cells[x][y] = new Cell();
-            }
-        }
+        cells = initCells(new Cell[DEFAULT_WIDTH][DEFAULT_HEIGHT]);
     }
 
     public Dimension getDimension() {
@@ -24,7 +18,16 @@ public class World {
     }
 
     public void advance() {
+        Cell[][] newCells = initCells(new Cell[DEFAULT_WIDTH][DEFAULT_HEIGHT]);
 
+        for (int x = 0; x < DEFAULT_WIDTH; x++) {
+            for (int y = 0; y < DEFAULT_HEIGHT; y++) {
+                if (cells[x][y].willBeAlive(numberOfAliveNeighbours(x, y))){
+                    newCells[x][y] = Cell.ALIVE;
+                }
+            }
+        }
+        cells = newCells;
     }
 
     public boolean isEmpty() {
@@ -39,6 +42,35 @@ public class World {
     }
 
     public void setLivingAt(int x, int y) {
-        cells[x][y].setAlive();
+        cells[x][y] = Cell.ALIVE;
     }
+
+    private Cell[][] initCells(Cell[][] newCells) {
+        for (int x = 0; x < DEFAULT_WIDTH; x++) {
+            for (int y = 0; y < DEFAULT_HEIGHT; y++) {
+                newCells[x][y] = Cell.DEAD;
+            }
+        }
+        return newCells;
+    }
+
+    public int numberOfAliveNeighbours(int i, int j) {
+        int aliveNeighbours = 0;
+
+        int lowerX = Math.max(0, i-1);
+        int upperX = Math.min(DEFAULT_WIDTH-1, i+1);
+
+        int lowerY = Math.max(0, j-1);
+        int upperY = Math.min(DEFAULT_HEIGHT-1, j+1);
+
+        for (int x = lowerX; x <= upperX; x++) {
+            for (int y = lowerY; y <= upperY; y++) {
+                if ((x != i || y != j) && cells[x][y].isAlive()){
+                    aliveNeighbours++;
+                }
+            }
+        }
+        return aliveNeighbours;
+    }
+
 }

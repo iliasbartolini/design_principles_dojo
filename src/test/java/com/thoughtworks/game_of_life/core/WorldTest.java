@@ -35,4 +35,26 @@ public class WorldTest {
         assertThat(world.isEmpty(), is(true));
     }
 
+    @Test
+    public void live_cells_with_fewer_than_two_live_neighbours_dies(){
+        world.setLivingAt(2,2);
+        world.setLivingAt(2,3);
+
+        world.advance();
+
+        assertThat(world.isEmpty(), is(true));
+    }
+
+    @Test
+    public void live_cells_with_two_or_three_live_neighbours_survives(){
+        world.setLivingAt(2,2);
+        world.setLivingAt(2,3);
+        world.setLivingAt(2,4);
+
+        world.advance();
+
+        assertThat(world.isEmpty(), is(false));
+    }
+
+
 }

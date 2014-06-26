@@ -1,17 +1,25 @@
 package com.thoughtworks.game_of_life.core;
 
 public class Cell {
-    private boolean alive;
+    public static final Cell ALIVE = new Cell(true);
+    public static final Cell DEAD = new Cell(false);
 
-    public Cell(){
+    private final boolean alive;
+
+    private Cell() {
         alive = false;
+    }
+
+    private Cell(boolean isAlive) {
+        alive = isAlive;
     }
 
     public boolean isAlive() {
         return alive;
     }
 
-    public void setAlive() {
-        alive = true;
+    public boolean willBeAlive(int numberOfAliveNeighbours) {
+        return (alive && (numberOfAliveNeighbours == 2));
     }
+
 }
