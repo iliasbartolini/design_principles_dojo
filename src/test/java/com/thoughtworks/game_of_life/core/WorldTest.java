@@ -112,7 +112,6 @@ public class WorldTest {
         }
     }
 
-
     @Test
     public void live_cell_with_more_than_fourth_live_neighbours_zombies()
     {

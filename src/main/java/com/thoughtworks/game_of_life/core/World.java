@@ -80,4 +80,8 @@ public class World {
     public void onAdvance(EvolutionListener listener) {
         _listener = listener;
     }
+
+    public boolean isZombie(Location location) {
+        return cells.get(location).isZombie();
+    }
 }

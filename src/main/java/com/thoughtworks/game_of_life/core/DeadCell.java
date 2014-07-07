@@ -16,4 +16,9 @@ public class DeadCell implements Cell{
     public boolean willBeZombie(int numberOfAliveNeighbours) {
         return numberOfAliveNeighbours >= 4;
     }
+
+    @Override
+    public boolean isZombie() {
+        return false;
+    }
 }

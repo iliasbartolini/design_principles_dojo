@@ -5,4 +5,5 @@ public interface Cell {
     boolean willBeAlive(int numberOfAliveNeighbours);
     boolean willBeZombie(int numberOfAliveNeighbours);
 
+    boolean isZombie();
 }

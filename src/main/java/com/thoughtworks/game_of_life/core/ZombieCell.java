@@ -18,4 +18,9 @@ public class ZombieCell implements Cell {
     public boolean willBeZombie(int numberOfAliveNeighbours) {
         return true;
     }
+
+    @Override
+    public boolean isZombie() {
+        return true;
+    }
 }
