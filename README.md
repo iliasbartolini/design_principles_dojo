@@ -7,18 +7,22 @@ http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 To run a gradle using the gradle wrapper use:
 
 Mac/Linux:
-```> ./gradlew test
+```
+> ./gradlew test
 ```
 
 Windows:
-```> gradlew.bat test
+```
+> gradlew.bat test
 ```
 
 To generate IntelliJ or Eclipse project files
 
-```> ./gradlew idea
+```
+> ./gradlew idea
 ```
 
-```> ./gradlew ecplise
+```
+> ./gradlew ecplise
 ```
 
