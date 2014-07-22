@@ -11,3 +11,6 @@ bin
 *.ipr
 build
 *~
+.classpath
+.project
+
