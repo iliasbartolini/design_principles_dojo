@@ -46,7 +46,7 @@ public class World {
     }
 
     private Map<Location,Cell> initCells() {
-        Map<Location, Cell> cells = new HashMap<>();
+        Map<Location, Cell> cells = new HashMap<Location, Cell>();
         for (Location location : allWorldLocations(DEFAULT_WIDTH, DEFAULT_HEIGHT)) {
             cells.put(location, new DeadCell());
         }
