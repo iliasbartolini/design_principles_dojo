@@ -24,3 +24,7 @@ To generate IntelliJ or Eclipse project files:
 Facilitator guide
 -----------------
 https://github.com/iliasbartolini/design_principles_dojo_facilitator_guide
+
+In other languages
+------------------
+* C# - https://github.com/lucaminudel/tensions_and_synergies_between_design_principles
