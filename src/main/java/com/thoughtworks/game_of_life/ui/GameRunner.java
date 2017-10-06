@@ -22,10 +22,9 @@ public class GameRunner {
 
     private boolean open;
     private GameCanvas canvas;
-    private World world;
 
     private void initialize() throws Exception {
-        world = new World();
+        World world = new World();
 
         world.setLiving(at(7,1));
         world.setLiving(at(7,2));
