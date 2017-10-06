@@ -12,4 +12,14 @@ public class AliveCell implements Cell{
         return numberOfAliveNeighbours == 2 || numberOfAliveNeighbours == 3;
     }
 
+    @Override
+    public boolean willBeZombie(int numberOfAliveNeighbours) {
+        return numberOfAliveNeighbours >= 4;
+    }
+
+    @Override
+    public boolean isZombie() {
+        return false;
+    }
+
 }

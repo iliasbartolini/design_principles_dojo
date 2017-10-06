@@ -1,7 +1,6 @@
 package com.thoughtworks.game_of_life.core;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static com.thoughtworks.game_of_life.core.Location.allWorldLocations;
 
@@ -12,6 +11,12 @@ public class World {
 
 
     Map<Location, Cell> cells;
+    private EvolutionListener _listener = new EvolutionListener() {
+        @Override
+        public void onNewZombies(List<Location> zombies) {
+
+        }
+    };
 
     public World()  {
         cells = initCells();
@@ -19,13 +24,21 @@ public class World {
 
     public void advance() {
         Map<Location, Cell> newCells = initCells();
+        List<Location> zombiesLocation = new ArrayList<Location>();
 
         for (Location location : allWorldLocations(DEFAULT_WIDTH, DEFAULT_HEIGHT)) {
             if (cells.get(location).willBeAlive(numberOfAliveNeighbours(location))){
                 newCells.put(location, new AliveCell());
             }
+            if (cells.get(location).willBeZombie(numberOfAliveNeighbours(location))){
+                zombiesLocation.add(location);
+                newCells.put(location, new ZombieCell());
+            }
         }
         cells = newCells;
+
+        _listener.onNewZombies(zombiesLocation);
+
     }
 
     public boolean isEmpty() {
@@ -64,4 +77,11 @@ public class World {
         return aliveNeighbours;
     }
 
+    public void onAdvance(EvolutionListener listener) {
+        _listener = listener;
+    }
+
+    public boolean isZombie(Location location) {
+        return cells.get(location).isZombie();
+    }
 }
