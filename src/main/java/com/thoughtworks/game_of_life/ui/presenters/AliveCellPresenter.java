@@ -19,7 +19,7 @@ public class AliveCellPresenter implements Presenter {
         graphics.fill(getBounds());
     }
 
-    public Rectangle getBounds() {
+    private Rectangle getBounds() {
         return new Rectangle(location.x * GameRunner.TILE_SIZE, location.y * GameRunner.TILE_SIZE, GameRunner.TILE_SIZE, GameRunner.TILE_SIZE);
     }
 }
