@@ -7,7 +7,6 @@ import com.thoughtworks.game_of_life.ui.GameRunner;
 import com.thoughtworks.game_of_life.ui.ImageLoader;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
 public class IntroScreen implements Screen {
 
@@ -35,7 +34,7 @@ public class IntroScreen implements Screen {
         return this;
     }
 
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed() {
         startGame = true;
     }
 }

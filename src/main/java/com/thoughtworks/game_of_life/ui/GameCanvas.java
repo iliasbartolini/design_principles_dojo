@@ -49,7 +49,7 @@ public class GameCanvas extends Canvas implements KeyListener {
     public void keyTyped(KeyEvent e) { }
 
     public void keyPressed(KeyEvent e) {
-        currentScreen.keyPressed(e);
+        currentScreen.keyPressed();
     }
 
     public void keyReleased(KeyEvent e) { }

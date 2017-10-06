@@ -5,7 +5,6 @@ import com.thoughtworks.game_of_life.core.World;
 import com.thoughtworks.game_of_life.ui.presenters.GamePresenter;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
 public class GameScreen implements Screen {
 
@@ -30,5 +29,5 @@ public class GameScreen implements Screen {
         return this;
     }
 
-    public void keyPressed(KeyEvent e) { }
+    public void keyPressed() { }
 }
