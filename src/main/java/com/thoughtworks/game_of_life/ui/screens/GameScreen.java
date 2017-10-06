@@ -16,7 +16,7 @@ public class GameScreen implements Screen {
         this(world, new GamePresenter(world));
     }
 
-    GameScreen(World world, GamePresenter gamePresenter) {
+    private GameScreen(World world, GamePresenter gamePresenter) {
         this.world = world;
         this.gamePresenter = gamePresenter;
     }
