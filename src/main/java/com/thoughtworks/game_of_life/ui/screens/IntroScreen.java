@@ -27,7 +27,7 @@ public class IntroScreen implements Screen {
         graphics.drawImage(TITLE_SCREEN_IMAGE, 0, 0, dimension.width, height, null);
     }
 
-    public Screen getNextScreen() throws Exception {
+    public Screen getNextScreen() {
         if (startGame) {
             return new GameScreen(world);
         }

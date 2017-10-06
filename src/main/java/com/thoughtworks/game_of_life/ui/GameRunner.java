@@ -23,7 +23,7 @@ public class GameRunner {
     private boolean open;
     private GameCanvas canvas;
 
-    private void initialize() throws Exception {
+    private void initialize() {
         World world = new World();
 
         world.setLiving(at(7,1));
@@ -56,7 +56,7 @@ public class GameRunner {
         canvas.initialize(panel);
     }
 
-    private void run() throws Exception {
+    private void run() {
         while (open) {
             canvas.draw();
 

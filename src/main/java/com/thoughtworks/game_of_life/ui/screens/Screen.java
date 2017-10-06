@@ -5,5 +5,5 @@ import java.awt.*;
 public interface Screen {
     void draw(Graphics2D graphics);
     void keyPressed();
-    Screen getNextScreen() throws Exception;
+    Screen getNextScreen();
 }
