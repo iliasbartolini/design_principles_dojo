@@ -96,6 +96,4 @@ public class WorldTest {
 
         assertThat(world.isAlive(at(2, 3)), is(true));
     }
-
-
 }

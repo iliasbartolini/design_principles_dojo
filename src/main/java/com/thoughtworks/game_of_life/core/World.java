@@ -10,7 +10,6 @@ public class World {
     public static final int DEFAULT_WIDTH = 10;
     public static final int DEFAULT_HEIGHT = 10;
 
-
     Map<Location, Cell> cells;
 
     public World()  {
@@ -46,7 +45,7 @@ public class World {
     }
 
     private Map<Location,Cell> initCells() {
-        Map<Location, Cell> cells = new HashMap<Location, Cell>();
+        Map<Location, Cell> cells = new HashMap<>();
         for (Location location : allWorldLocations(DEFAULT_WIDTH, DEFAULT_HEIGHT)) {
             cells.put(location, new DeadCell());
         }
@@ -63,5 +62,4 @@ public class World {
         }
         return aliveNeighbours;
     }
-
 }

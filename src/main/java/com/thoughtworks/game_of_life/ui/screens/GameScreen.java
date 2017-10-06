@@ -8,12 +8,9 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class GameScreen implements Screen {
+
     private final World world;
     private final GamePresenter gamePresenter;
-
-    public GameScreen() throws Exception {
-        this(new World());
-    }
 
     public GameScreen(World world) {
         this(world, new GamePresenter(world));

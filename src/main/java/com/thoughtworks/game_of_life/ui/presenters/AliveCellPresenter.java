@@ -6,7 +6,7 @@ import com.thoughtworks.game_of_life.ui.GameRunner;
 import java.awt.*;
 
 public class AliveCellPresenter implements Presenter {
-    private static final int SIDE = 4;
+
     private Location location;
 
     public AliveCellPresenter(Location location) {
@@ -22,5 +22,4 @@ public class AliveCellPresenter implements Presenter {
     public Rectangle getBounds() {
         return new Rectangle(location.x * GameRunner.TILE_SIZE, location.y * GameRunner.TILE_SIZE, GameRunner.TILE_SIZE, GameRunner.TILE_SIZE);
     }
-
 }

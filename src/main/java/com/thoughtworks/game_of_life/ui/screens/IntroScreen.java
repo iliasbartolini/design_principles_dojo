@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class IntroScreen implements Screen {
+
     static final Image TITLE_SCREEN_IMAGE = ImageLoader.loadImage(GameCanvas.class, "introScreen.png");
 
     private final Dimension dimension;

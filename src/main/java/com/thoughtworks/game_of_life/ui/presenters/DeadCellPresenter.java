@@ -6,6 +6,7 @@ import com.thoughtworks.game_of_life.ui.GameRunner;
 import java.awt.*;
 
 public class DeadCellPresenter implements Presenter {
+
     private Location location;
 
     public DeadCellPresenter(Location location) {
@@ -14,7 +15,6 @@ public class DeadCellPresenter implements Presenter {
 
     @Override
     public void draw(Graphics2D graphics) {
-
         graphics.setColor(Color.white);
         graphics.fill(getBounds());
     }

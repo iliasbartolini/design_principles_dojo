@@ -21,5 +21,4 @@ public class GamePresenter implements Presenter {
             cellPresenter.draw(graphics);
         }
     }
-
 }
