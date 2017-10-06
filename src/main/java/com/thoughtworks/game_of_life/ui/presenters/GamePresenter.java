@@ -9,7 +9,7 @@ import static com.thoughtworks.game_of_life.core.Location.allWorldLocations;
 
 public class GamePresenter implements Presenter {
 
-    private World world;
+    private final World world;
 
     public GamePresenter(World world) {
         this.world = world;

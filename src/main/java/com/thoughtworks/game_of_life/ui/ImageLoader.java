@@ -6,13 +6,13 @@ import java.util.Map;
 
 public class ImageLoader {
 
-    private static ImageLoader instance = new ImageLoader();
+    private static final ImageLoader instance = new ImageLoader();
 
     public static Image loadImage(Class<?> className, String imageName) {
         return instance.load(className, imageName);
     }
 
-    private Map<String, Image> images;
+    private final Map<String, Image> images;
 
     private ImageLoader() {
         images = new HashMap<>();

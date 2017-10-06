@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class AliveCellPresenter implements Presenter {
 
-    private Location location;
+    private final Location location;
 
     public AliveCellPresenter(Location location) {
         this.location = location;

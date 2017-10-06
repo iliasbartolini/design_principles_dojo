@@ -14,7 +14,7 @@ public class IntroScreen implements Screen {
 
     private final Dimension dimension;
     private boolean startGame;
-    private World world;
+    private final World world;
 
     public IntroScreen(World world) {
         this.world = world;
