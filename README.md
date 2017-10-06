@@ -17,7 +17,7 @@ To run the application:
 To generate IntelliJ or Eclipse project files:
 ```
 > ./gradlew idea
-> ./gradlew ecplise
+> ./gradlew eclipse
 ```
 
 

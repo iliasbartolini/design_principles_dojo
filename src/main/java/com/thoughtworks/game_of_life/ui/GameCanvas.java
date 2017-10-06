@@ -30,7 +30,7 @@ public class GameCanvas extends Canvas implements KeyListener {
         requestFocus();
     }
 
-    public void draw() throws Exception {
+    public void draw() {
         BufferStrategy strategy = getBufferStrategy();
         Graphics2D graphics = (Graphics2D) strategy.getDrawGraphics();
         graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -49,7 +49,7 @@ public class GameCanvas extends Canvas implements KeyListener {
     public void keyTyped(KeyEvent e) { }
 
     public void keyPressed(KeyEvent e) {
-        currentScreen.keyPressed(e);
+        currentScreen.keyPressed();
     }
 
     public void keyReleased(KeyEvent e) { }

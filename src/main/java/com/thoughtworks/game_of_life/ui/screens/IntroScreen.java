@@ -7,14 +7,14 @@ import com.thoughtworks.game_of_life.ui.GameRunner;
 import com.thoughtworks.game_of_life.ui.ImageLoader;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
 public class IntroScreen implements Screen {
-    static final Image TITLE_SCREEN_IMAGE = ImageLoader.loadImage(GameCanvas.class, "introScreen.png");
+
+    private static final Image TITLE_SCREEN_IMAGE = ImageLoader.loadImage(GameCanvas.class, "introScreen.png");
 
     private final Dimension dimension;
     private boolean startGame;
-    private World world;
+    private final World world;
 
     public IntroScreen(World world) {
         this.world = world;
@@ -27,14 +27,14 @@ public class IntroScreen implements Screen {
         graphics.drawImage(TITLE_SCREEN_IMAGE, 0, 0, dimension.width, height, null);
     }
 
-    public Screen getNextScreen() throws Exception {
+    public Screen getNextScreen() {
         if (startGame) {
             return new GameScreen(world);
         }
         return this;
     }
 
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed() {
         startGame = true;
     }
 }

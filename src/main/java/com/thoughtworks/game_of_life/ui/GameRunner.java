@@ -10,6 +10,7 @@ import java.awt.event.WindowEvent;
 import static com.thoughtworks.game_of_life.core.Location.at;
 
 public class GameRunner {
+
     private static final int FRAME_INTERVAL = 30;
     public static final int TILE_SIZE = 48;
 
@@ -21,10 +22,9 @@ public class GameRunner {
 
     private boolean open;
     private GameCanvas canvas;
-    private World world;
 
-    private void initialize() throws Exception {
-        world = new World();
+    private void initialize() {
+        World world = new World();
 
         world.setLiving(at(7,1));
         world.setLiving(at(7,2));
@@ -56,7 +56,7 @@ public class GameRunner {
         canvas.initialize(panel);
     }
 
-    private void run() throws Exception {
+    private void run() {
         while (open) {
             canvas.draw();
 
@@ -67,4 +67,3 @@ public class GameRunner {
         }
     }
 }
-
