@@ -10,18 +10,17 @@ public class World {
     public static final int DEFAULT_WIDTH = 10;
     public static final int DEFAULT_HEIGHT = 10;
 
-
     Map<Location, Cell> cells;
 
-    public World()  {
+    public World() {
         cells = initCells();
     }
 
     public void advance() {
-        Map<Location, Cell> newCells = initCells();
+        var newCells = initCells();
 
         for (Location location : allWorldLocations(DEFAULT_WIDTH, DEFAULT_HEIGHT)) {
-            if (cells.get(location).willBeAlive(numberOfAliveNeighbours(location))){
+            if (cells.get(location).willBeAlive(numberOfAliveNeighbours(location))) {
                 newCells.put(location, new AliveCell());
             }
         }
@@ -29,12 +28,7 @@ public class World {
     }
 
     public boolean isEmpty() {
-        for (Cell cell: cells.values()) {
-            if (cell.isAlive()){
-                return false;
-            }
-        }
-        return true;
+        return cells.values().stream().noneMatch(Cell::isAlive);
     }
 
     public void setLiving(Location location) {
@@ -45,8 +39,8 @@ public class World {
         return cells.get(location).isAlive();
     }
 
-    private Map<Location,Cell> initCells() {
-        Map<Location, Cell> cells = new HashMap<Location, Cell>();
+    private Map<Location, Cell> initCells() {
+        Map<Location, Cell> cells = new HashMap<>();
         for (Location location : allWorldLocations(DEFAULT_WIDTH, DEFAULT_HEIGHT)) {
             cells.put(location, new DeadCell());
         }
@@ -54,14 +48,8 @@ public class World {
     }
 
     public int numberOfAliveNeighbours(Location l) {
-        int aliveNeighbours = 0;
-
-        for (Location location : l.allNeighbours(DEFAULT_WIDTH, DEFAULT_HEIGHT)){
-            if (cells.get(location).isAlive()){
-                aliveNeighbours++;
-            }
-        }
-        return aliveNeighbours;
+        return (int) l.allNeighbours(DEFAULT_WIDTH, DEFAULT_HEIGHT).stream()
+            .filter(location -> cells.get(location).isAlive())
+            .count();
     }
-
 }

@@ -1,6 +1,6 @@
 package com.thoughtworks.game_of_life.core;
 
-public interface Cell {
+public sealed interface Cell permits AliveCell, DeadCell {
     boolean isAlive();
     boolean willBeAlive(int numberOfAliveNeighbours);
 }
