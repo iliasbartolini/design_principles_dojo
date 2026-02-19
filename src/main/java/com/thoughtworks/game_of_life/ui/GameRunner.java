@@ -26,13 +26,13 @@ public class GameRunner {
     private void initialize() throws Exception {
         world = new World();
 
-        world.setLiving(at(7,1));
-        world.setLiving(at(7,2));
-        world.setLiving(at(7,3));
-        world.setLiving(at(8,3));
-        world.setLiving(at(9,2));
+        world.setLivingCell(at(7,1));
+        world.setLivingCell(at(7,2));
+        world.setLivingCell(at(7,3));
+        world.setLivingCell(at(8,3));
+        world.setLivingCell(at(9,2));
 
-        Dimension dimension = new Dimension(TILE_SIZE * World.DEFAULT_WIDTH, TILE_SIZE * World.DEFAULT_HEIGHT);
+        Dimension dimension = new Dimension(TILE_SIZE * World.WORLD_WIDTH, TILE_SIZE * World.WORLD_HEIGHT);
         canvas = new GameCanvas(dimension, world);
 
         JFrame container = new JFrame("Conway's Game of Life");

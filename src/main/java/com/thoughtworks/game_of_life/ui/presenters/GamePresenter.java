@@ -5,7 +5,7 @@ import com.thoughtworks.game_of_life.core.World;
 
 import java.awt.*;
 
-import static com.thoughtworks.game_of_life.core.Location.allWorldLocations;
+import static com.thoughtworks.game_of_life.core.Location.allLocations;
 
 public class GamePresenter implements Presenter {
 
@@ -16,7 +16,7 @@ public class GamePresenter implements Presenter {
     }
 
     public void draw(Graphics2D graphics) {
-        for (Location location : allWorldLocations(World.DEFAULT_WIDTH, World.DEFAULT_HEIGHT)){
+        for (Location location : allLocations(World.WORLD_WIDTH, World.WORLD_HEIGHT)){
             Presenter cellPresenter = CellToPresenterFactory.toPresenter(world, location);
             cellPresenter.draw(graphics);
         }

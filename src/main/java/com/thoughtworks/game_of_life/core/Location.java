@@ -9,7 +9,7 @@ public record Location(int x, int y) {
         return new Location(x, y);
     }
 
-    public static List<Location> allWorldLocations(int width, int height) {
+    public static List<Location> allLocations(int width, int height) {
         var locations = new ArrayList<Location>();
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
@@ -19,18 +19,22 @@ public record Location(int x, int y) {
         return locations;
     }
 
-    public List<Location> allNeighbours(int worldWidth, int worldHeight) {
+    public List<Location> getBoundedNeighbours(int width, int height) {
         var neighbours = new ArrayList<Location>();
 
-        int lowerX = Math.max(0, x - 1);
-        int upperX = Math.min(worldWidth - 1, x + 1);
+        int minX = 0;
+        int minY = 0;
+        int maxX = width - 1;
+        int maxY = height - 1;
 
-        int lowerY = Math.max(0, y - 1);
-        int upperY = Math.min(worldHeight - 1, y + 1);
+        int lowerNeighbourX = Math.max(minX, x - 1);
+        int upperNeighbourX = Math.min(maxX, x + 1);
+        int lowerNeighbourY = Math.max(minY, y - 1);
+        int upperNeighbourY = Math.min(maxY, y + 1);
 
-        for (int i = lowerX; i <= upperX; i++) {
-            for (int j = lowerY; j <= upperY; j++) {
-                if (i != x || j != y) {
+        for (int i = lowerNeighbourX; i <= upperNeighbourX; i++) {
+            for (int j = lowerNeighbourY; j <= upperNeighbourY; j++) {
+                if (!at(i,j).equals(this)) {
                     neighbours.add(at(i, j));
                 }
             }

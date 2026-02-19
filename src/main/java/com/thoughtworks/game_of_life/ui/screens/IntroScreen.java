@@ -18,7 +18,9 @@ public class IntroScreen implements Screen {
 
     public IntroScreen(World world) {
         this.world = world;
-        this.dimension = new Dimension(GameRunner.TILE_SIZE * World.DEFAULT_WIDTH, GameRunner.TILE_SIZE * World.DEFAULT_HEIGHT);
+        this.dimension = new Dimension(
+            GameRunner.TILE_SIZE * World.WORLD_WIDTH, 
+            GameRunner.TILE_SIZE * World.WORLD_HEIGHT);
         this.startGame = false;
     }
 

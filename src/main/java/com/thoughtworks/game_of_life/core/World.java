@@ -2,13 +2,14 @@ package com.thoughtworks.game_of_life.core;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
-import static com.thoughtworks.game_of_life.core.Location.allWorldLocations;
+import static com.thoughtworks.game_of_life.core.Location.allLocations;
 
 public class World {
 
-    public static final int DEFAULT_WIDTH = 10;
-    public static final int DEFAULT_HEIGHT = 10;
+    public static final int WORLD_WIDTH = 10;
+    public static final int WORLD_HEIGHT = 10;
 
     Map<Location, Cell> cells;
 
@@ -19,7 +20,7 @@ public class World {
     public void advance() {
         var newCells = initCells();
 
-        for (Location location : allWorldLocations(DEFAULT_WIDTH, DEFAULT_HEIGHT)) {
+        for (Location location : allLocations(WORLD_WIDTH, WORLD_HEIGHT)) {
             if (cells.get(location).willBeAlive(numberOfAliveNeighbours(location))) {
                 newCells.put(location, new AliveCell());
             }
@@ -31,8 +32,8 @@ public class World {
         return cells.values().stream().noneMatch(Cell::isAlive);
     }
 
-    public void setLiving(Location location) {
-        cells.put(location, new AliveCell());
+    public void setLivingCell(Location atLocation) {
+        cells.put(atLocation, new AliveCell());
     }
 
     public boolean isAlive(Location location) {
@@ -40,16 +41,13 @@ public class World {
     }
 
     private Map<Location, Cell> initCells() {
-        Map<Location, Cell> cells = new HashMap<>();
-        for (Location location : allWorldLocations(DEFAULT_WIDTH, DEFAULT_HEIGHT)) {
-            cells.put(location, new DeadCell());
-        }
-        return cells;
+        return allLocations(WORLD_WIDTH, WORLD_HEIGHT).stream()
+            .collect(Collectors.toMap(location -> location, location -> new DeadCell()));
     }
 
-    public int numberOfAliveNeighbours(Location l) {
-        return (int) l.allNeighbours(DEFAULT_WIDTH, DEFAULT_HEIGHT).stream()
-            .filter(location -> cells.get(location).isAlive())
+    public int numberOfAliveNeighbours(Location location) {
+        return (int) location.getBoundedNeighbours(WORLD_WIDTH, WORLD_HEIGHT).stream()
+            .filter(neighbour -> cells.get(neighbour).isAlive())
             .count();
     }
 }
