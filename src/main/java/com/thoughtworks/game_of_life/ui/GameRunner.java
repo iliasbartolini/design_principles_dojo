@@ -10,7 +10,7 @@ import java.awt.event.WindowEvent;
 import static com.thoughtworks.game_of_life.core.Location.at;
 
 public class GameRunner {
-    private static final int FRAME_INTERVAL = 30;
+    private static final int FRAME_INTERVAL = 250;
     public static final int TILE_SIZE = 48;
 
     public static void main(String[] args) throws Exception {
